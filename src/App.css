@@ -1,38 +1,208 @@
-.App {
+:root {
+  --color-primary: #393b3a;
+  --color-secondary: #cfb31d;
+  --color-bg: #121212;
+}
+body {
+  background-color: var(--color-bg);
+  color: white;
+  font-family: Roboto;
+}
+
+.navbar {
+  height: 90px;
+  margin: 10px 0px 00px 0px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.navbar-links {
+  margin-top: 20px;
+}
+
+.navbar-link {
+  padding: 20px;
+  margin-right: 10px;
+  height: 70px;
+  width: 200px;
+  font-size: 20px;
+  border-radius: 6px;
+  border: none;
+  background-color: var(--color-primary);
+  color: white;
+  text-decoration: none;
+}
+
+.navbar-link:hover {
+  cursor: pointer;
+  opacity: 70%;
+  transition: opacity 0.5s;
+}
+
+.logo-div {
+  margin-left: 10px;
+  display: flex;
+  align-items: center;
+}
+
+.web-name {
+  color: white;
+  margin-right: 10px;
+  font-size: 30px;
+}
+
+.outer-div-cipher {
+  display: flex;
+  justify-content: center;
+}
+
+.div-cipher {
+  margin-top: 50px;
+}
+
+.div-title {
+  text-align: center;
+  color: var(--color-secondary);
+  height: 50px;
+  font-size: 30px;
+}
+
+.main-section {
+  display: flex;
+}
+
+.cipher-input-output {
+  height: 200px;
+  width: 410px;
+  background-color: var(--color-primary);
+  border-radius: 6px;
+  border: solid 1px var(--color-secondary);
+  padding: 20px;
+  color: white;
+  font-size: 15px;
+  font-family: Roboto;
+  resize: none;
+}
+
+.cipher-input-output:focus {
+  outline: none;
+}
+
+.middle-section {
+  margin: 0px 50px 0px 50px;
+  width: 470px;
+}
+
+.button-cipher {
+  margin: auto;
+  display: block;
+  background-color: var(--color-secondary);
+  height: 45px;
+  width: 238px;
+  font-size: 25px;
+  border-radius: 40px;
+  border: none;
+  margin-bottom: 15px;
+}
+
+.button-cipher:hover {
+  opacity: 75%;
+  cursor: pointer;
+}
+
+.div-key {
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.key-label {
+  display: block;
+  margin-bottom: 2px;
+  font-size: 15px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.key-input {
+  margin: auto;
+  display: block;
+  height: 50px;
+  width: 220px;
+  border-radius: 40px;
+  border: none;
+  font-size: 30px;
+  text-align: center;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+.key-input:focus {
+  outline: none;
+}
+
+.key-error {
+  display: block;
+  margin-top: 10px;
+  color: rgb(255, 0, 0);
+  font-size: 20px;
+}
+
+.polybius-key{
   color: white;
+  width: 20px;
+  height: 20px;
+  margin: 5px;
+  font-size: 20px;
+  text-align: center;
+  background-color: #393b3a;
+  border: none;
+  padding: 2px;
 }
 
-.App-link {
-  color: #61dafb;
+.polybius-key:focus {
+  outline: none;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.button-div {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.generate-key {
+  margin-top: 15px;
+  background-color: var(--color-secondary);
+  height: 30px;
+  width: 150px;
+  font-size: 15px;
+  border-radius: 20px;
+  border: none;
+}
+
+.generate-key:hover {
+  opacity: 75%;
+  cursor: pointer;
+}
+
+.polybius-error {
+  margin: auto;
+}
+
+.polybius-error-div {
+  display: flex;
+  justify-content: center;
+}
+
+.checkbox-div {
+  margin-top: 10px;
+  align-items: center;
+}
+
+.prime-label {
+  margin-left: 10px;
+}
+
+.homophonic-key {
+  box-sizing: border-box;
+  padding: 10px;
+  height: 175px;
+  width: 100%;
+}
+
+.homophonic-middle{
+  width: 400px;
 }
