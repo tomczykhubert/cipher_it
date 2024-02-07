@@ -51,7 +51,7 @@ export default function Caesar() {
     e.preventDefault();
     if (!checkKey(keyCipher)) return;
     else {
-      let output = cipherCaesar(inputCipher, keyCipher, true)
+      let output = cipherCaesar(inputCipher, keyCipher, 1)
       if (output === "Brak znaków do zaszyfrowania!"){
         setCipherAlertText(output);
         setCipherAlertShow(true);
@@ -68,7 +68,7 @@ export default function Caesar() {
     e.preventDefault();
     if (!checkKey(keyDecipher)) return;
     else {
-      let output = cipherCaesar(inputDecipher, keyDecipher, false)
+      let output = cipherCaesar(inputDecipher, keyDecipher, -1)
       if (output === "Brak znaków do zdeszyfrowania!"){
         setDecipherAlertText(output);
         setDecipherAlertShow(true);

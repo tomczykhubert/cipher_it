@@ -5,26 +5,21 @@ export function checkKey(key) {
   else return key >= 1 && key <= 34;
 }
 
-export function cipherCaesar(text, key, boolean) {
+function mod(x, y) {
+  return ((x % y) + y) % y;
+}
+
+export function cipherCaesar(text, key, direction) {
   let filteredText = filterInput(text);
   let output = "";
-  let newLetterIndex;
   if (filteredText.length === 0)
-    if (boolean === true) return "Brak znaków do zaszyfrowania!";
+    if (direction === 1) return "Brak znaków do zaszyfrowania!";
     else return "Brak znaków do zdeszyfrowania!";
 
   filteredText.map((char) => {
-    if (boolean === true) newLetterIndex = alphabet.indexOf(char) + Number(key);
-    else if (boolean === false)
-      newLetterIndex = alphabet.indexOf(char) - Number(key);
-
-    if (newLetterIndex > 34) {
-      newLetterIndex = newLetterIndex - 34;
-    } else if (newLetterIndex < 0) {
-      newLetterIndex = newLetterIndex + 34;
-    }
+    const index = alphabet.indexOf(char);
+    const newLetterIndex = mod(index + (key * direction), alphabet.length)
     return (output += alphabet.at(newLetterIndex));
   });
-  output = output.toString();
   return output;
 }
