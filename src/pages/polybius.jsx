@@ -177,7 +177,7 @@ export default function Polybius() {
                   </div>
                 </div>
               </div>
-              <div className="cipher-input-output">{item.outputValue}</div>
+              <div className="cipher-input-output"><div className="output-div">{item.outputValue}</div></div>
             </div>
           </form>
         </div>

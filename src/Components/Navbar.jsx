@@ -24,6 +24,7 @@ export default function Navbar() {
         {MENU.map((menuItem) => {
           return (
             <a
+              id={menuItem.link}
               key={menuItem.link + "ID"}
               href={menuItem.link}
               className="navbar-link"

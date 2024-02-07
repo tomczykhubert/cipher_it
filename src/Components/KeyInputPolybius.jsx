@@ -29,10 +29,26 @@ function KeyInput({ exportKey }) {
     navigator.clipboard.writeText(JSON.stringify(inputArray));
   }
 
+  function checkValidPasted(pasted){
+    console.log(pasted);
+    if (typeof pasted === "object" && pasted.length === 5){
+      for (let x = 0; x < 5; x++){
+        if (pasted[x].length !== 7)
+          return false;
+      }
+      return true;
+    }
+    else
+      return false;
+  }
+
   async function pasteKey(){
     let pasted = await navigator.clipboard.readText();
     pasted = JSON.parse(pasted);
-    setInputArray(pasted);
+    if(checkValidPasted(pasted)){
+      setInputArray(pasted);
+      exportKey(pasted);
+    }
   }
 
   const handleInputChange = (index, indexRow, value) => {

@@ -17,11 +17,11 @@ export default function Homophonic() {
   const [cipherKey, setCipherKey] = useState("");
   const [decipherKey, setDecipherKey] = useState("");
 
-  const [cipherAlertShow, setCipherAlertShow] = useState(true);
-  const [decipherAlertShow, setDecipherAlertShow] = useState(true);
+  const [cipherAlertShow, setCipherAlertShow] = useState(false);
+  const [decipherAlertShow, setDecipherAlertShow] = useState(false);
 
-  const [cipherAlertText, setCipherAlertText] = useState("ERROR_MESSAGE");
-  const [decipherAlertText, setDecipherAlertText] = useState("ERROR_MESSAGE");
+  const [cipherAlertText, setCipherAlertText] = useState("");
+  const [decipherAlertText, setDecipherAlertText] = useState("");
 
   function checkCipherKey(key) {
     if (!checkKey(key)) {
@@ -36,7 +36,7 @@ export default function Homophonic() {
 
   function checkDecipherKey(key) {
     if (!checkKey(key)) {
-      setCipherAlertText("Zły klucz deszyfrujący!");
+      setDecipherAlertText("Zły klucz deszyfrujący!");
       setDecipherAlertShow(true);
       setDecipherKey(key);
     } else {
@@ -75,6 +75,34 @@ export default function Homophonic() {
     }
   };
 
+  function generateKey(){
+    let key = '';
+    let keyArray = [];
+    let subKey;
+    let number;
+    while (keyArray.length !== 108){
+      subKey = '';
+      for (let j = 0; j < 3; j++){
+        number = Math.floor(Math.random() * 9).toString();
+        subKey += number;
+      }
+      if (!keyArray.includes(subKey))
+        keyArray.push(subKey);
+    }
+    for(let i = 0; i < keyArray.length; i++){
+      key += keyArray[i];
+    }
+    return key;
+  }
+
+  function generateCipherKey(){
+    checkCipherKey(generateKey());
+  }
+
+  function generateDecipherKey(){
+    checkDecipherKey(generateKey());
+  }
+
   const formData = [
     {
       id: "Cipher",
@@ -90,6 +118,9 @@ export default function Homophonic() {
       setOutput: setCipherOutput,
       checkKey: checkCipherKey,
       alertText: cipherAlertText,
+      generateKey: generateCipherKey,
+      setKey: setCipherKey,
+      key: cipherKey,
     },
     {
       id: "Decipher",
@@ -105,6 +136,10 @@ export default function Homophonic() {
       setOutput: setDecipherOutput,
       checkKey: checkDecipherKey,
       alertText: decipherAlertText,
+      generateKey: generateDecipherKey,
+      setKey: setDecipherKey,
+      key: decipherKey,
+
     },
   ];
 
@@ -131,20 +166,21 @@ export default function Homophonic() {
                 <div className="div-key">
                   <label className="key-label">{item.key_name}</label>
                   <textarea
+                    value={item.key}
                     className="cipher-input-output homophonic-key"
                     onChange={(e) => {
-                      item.checkKey(e.target.value);
+                      item.checkKey(e.target.value)
                       item.setOutput(item.outputText);
                     }}
                   ></textarea>
                 </div>
                 <div className="button-div">
-                  <button type="button" className="generate-key">
+                  <button type="button" className="generate-key" onClick={item.generateKey}>
                     Generuj klucz
                   </button>
                 </div>
               </div>
-              <div className="cipher-input-output">{item.outputValue}</div>
+              <div className="cipher-input-output"><div className="output-div">{item.outputValue}</div></div>
             </div>
           </form>
         </div>
