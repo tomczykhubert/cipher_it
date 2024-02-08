@@ -1,10 +1,7 @@
 import { alphabet, filterInput } from "./cipher";
 
 export function checkKey(key){
-  if(/[^A-Za-zżźćńółęąśŻŹĆĄŚĘŁÓŃ]/.test(key))
-    return false;
-  else
-    return true;
+  return alphabet.includes(key) ? true : false
 }
 
 function modulo(x, y) {
@@ -14,7 +11,8 @@ function modulo(x, y) {
 function mapping(input, key, direction){
   let keyIndex = alphabet.indexOf(key);
   let filteredInput = filterInput(input);
-  if (filteredInput === ""){
+  console.log(filteredInput);
+  if (filteredInput.length === 0){
     if(direction === 1)
       return "Brak znaków do zaszyfrowania!";
     else
@@ -23,7 +21,7 @@ function mapping(input, key, direction){
   else{
     let result = ""
     for (let i = 0; i < filteredInput.length; i++){
-      let letter = input[i];
+      let letter = filteredInput[i];
       let index = alphabet.indexOf(letter);
       let outputIndex = modulo(index + ((keyIndex + i) * direction), alphabet.length);
       result += alphabet[outputIndex];

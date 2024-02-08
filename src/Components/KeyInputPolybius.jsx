@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { alphabet } from "../cipher_algorithms/cipher.js";
+import { alphabet, filterInput } from "../cipher_algorithms/cipher.js";
 
 function KeyInput({ exportKey }) {
   const [inputArray, setInputArray] = useState([
@@ -52,6 +52,7 @@ function KeyInput({ exportKey }) {
   }
 
   const handleInputChange = (index, indexRow, value) => {
+    value = filterInput(value).join('');
     if (value.length > 1) {
       value = value[0];
       return;

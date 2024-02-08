@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { cipherCaesar, checkKey } from "../cipher_algorithms/cipher_caesar";
+import { cipherCaesar, decipherCaesar, checkKey } from "../cipher_algorithms/cipher_caesar";
 
 export default function Caesar() {
   const [keyCipher, setCipherKey] = useState("");
@@ -51,7 +51,7 @@ export default function Caesar() {
     e.preventDefault();
     if (!checkKey(keyCipher)) return;
     else {
-      let output = cipherCaesar(inputCipher, keyCipher, 1)
+      let output = cipherCaesar(inputCipher, keyCipher)
       if (output === "Brak znaków do zaszyfrowania!"){
         setCipherAlertText(output);
         setCipherAlertShow(true);
@@ -68,7 +68,7 @@ export default function Caesar() {
     e.preventDefault();
     if (!checkKey(keyDecipher)) return;
     else {
-      let output = cipherCaesar(inputDecipher, keyDecipher, -1)
+      let output = decipherCaesar(inputDecipher, keyDecipher)
       if (output === "Brak znaków do zdeszyfrowania!"){
         setDecipherAlertText(output);
         setDecipherAlertShow(true);

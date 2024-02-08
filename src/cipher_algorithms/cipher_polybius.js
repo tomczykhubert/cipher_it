@@ -77,7 +77,6 @@ export function decipherPolybius(input, key, primeBool) {
     letterIndex++;
   })
   if (!finished)
-    output =  "Nieprawidłowy szyfrogram, któraś z cyfr nie jest indeksem w tabeli 5x7"
+    output = "Nieprawidłowy szyfrogram, któraś z cyfr nie jest indeksem w tabeli 7 x 5."
   return output;
-  
 }

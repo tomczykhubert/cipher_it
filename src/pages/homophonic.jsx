@@ -65,7 +65,7 @@ export default function Homophonic() {
     if (!checkKey(decipherKey)) return;
     else {
       let output = decipherHomophonic(decipherInput, decipherKey);
-      if (output === "Brak znaków do zdeszyfrowania!") {
+      if (output === "Brak znaków do zdeszyfrowania!" || output === "Nieprawidłowy szyfrogram, któraś część szyfrogramu nie odpowiada żadnej literze w kluczu!") {
         setDecipherAlertText(output);
         setDecipherAlertShow(true);
       } else {

@@ -106,10 +106,12 @@ function findSubKey(key, letter){
 function findLetter(key, numbers){
   let splittedKey = key.match(/.{1,3}/g);
   let index = splittedKey.indexOf(numbers);
-  console.log(index);
-  const findKeyValue = Object.entries(signsBefore).reduce((previous, current) => (current[1] <= index && current[1] > previous[1] ? current : previous), Object.entries(signsBefore)[0]);
-  console.log(findKeyValue);
-  return findKeyValue[0];
+  if (index === -1)
+    return "error"
+  else{
+    const findKeyValue = Object.entries(signsBefore).reduce((previous, current) => (current[1] <= index && current[1] > previous[1] ? current : previous), Object.entries(signsBefore)[0]);
+    return findKeyValue[0];
+  }
 }
 
 export function cipherHomophonic(input, key) {
@@ -121,7 +123,6 @@ export function cipherHomophonic(input, key) {
   for(let i = 0; i < filteredInput.length; i++){
     subKey = findSubKey(key, filteredInput[i]);
     result += subKey.toString();
-    console.log(subKey, result);
   }
   return result;
 }
@@ -135,7 +136,10 @@ export function decipherHomophonic(input, key) {
   let inputArray = filteredInput.match(/.{1,3}/g)
   for(let i = 0; i < inputArray.length; i++){
     letter = findLetter(key, inputArray[i])
-    result += letter;
+    if (letter === "error")
+      return "Nieprawidłowy szyfrogram, któraś część szyfrogramu nie odpowiada żadnej literze w kluczu!"
+    else
+      result += letter;
   }
   return result;
 }

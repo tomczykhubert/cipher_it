@@ -68,8 +68,8 @@ export default function Polybius() {
       return;
     } else {
       let output = cipherPolybius(inputCipher, keyCipher, primeCipher);
-      if (output === "Brak znaków do zaszyfrowania!"){
-        setCipherAlertText("Brak znaków do zaszyfrowania!");
+      if (output === "Brak znaków do zaszyfrowania!" || output === "Nieprawidłowy szyfrogram, któraś z cyfr nie jest indeksem w tabeli 7 x 5." || output === "Nieprawidowy szyfrogram, wprowadź parzystą liczbe cyfr."){
+        setCipherAlertText(output);
         setCipherAlert(true);
       }
       else {
@@ -87,16 +87,12 @@ export default function Polybius() {
       return;
     } else {
       let output = decipherPolybius(inputDecipher, keyDecipher, primeDecipher);
-      if (output === "Nieprawidowy szyfrogram, wprowadź wyłącznie cyfry 1-7."){
-        setDecipherAlertText("Nieprawidowy szyfrogram, wprowadź wyłącznie cyfry 1-7.");
-        setDecipherAlert(true);
-      }
-      else if(output === "Nieprawidowy szyfrogram, wprowadź parzystą liczbe cyfr."){
-        setDecipherAlertText("Nieprawidowy szyfrogram, wprowadź parzystą liczbe cyfr.");
+      if (output === "Nieprawidowy szyfrogram, wprowadź wyłącznie cyfry 1-7." || output === "Nieprawidłowy szyfrogram, któraś z cyfr nie jest indeksem w tabeli 7 x 5." || output === "Nieprawidowy szyfrogram, wprowadź parzystą liczbe cyfr."){
+        setDecipherAlertText(output);
         setDecipherAlert(true);
       }
       else {
-        setCipherAlert(false);
+        setDecipherAlert(false);
         setDecipherOutput(output);
       }
     }

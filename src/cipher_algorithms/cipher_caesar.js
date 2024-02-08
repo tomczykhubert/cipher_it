@@ -5,11 +5,11 @@ export function checkKey(key) {
   else return key >= 1 && key <= 34;
 }
 
-function mod(x, y) {
+function modulo(x, y) {
   return ((x % y) + y) % y;
 }
 
-export function cipherCaesar(text, key, direction) {
+function mapping(text, key, direction) {
   let filteredText = filterInput(text);
   let output = "";
   if (filteredText.length === 0)
@@ -18,8 +18,16 @@ export function cipherCaesar(text, key, direction) {
 
   filteredText.map((char) => {
     const index = alphabet.indexOf(char);
-    const newLetterIndex = mod(index + (key * direction), alphabet.length)
+    const newLetterIndex = modulo(index + (key * direction), alphabet.length)
     return (output += alphabet.at(newLetterIndex));
   });
   return output;
+}
+
+export function cipherCaesar(input, key){
+  return mapping(input,key,1);
+}
+
+export function decipherCaesar(input, key){
+  return mapping(input,key,-1);
 }
